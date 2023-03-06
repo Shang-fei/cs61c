@@ -1,1 +1,1 @@
-start from 23 3/6
+from 23 3/6
