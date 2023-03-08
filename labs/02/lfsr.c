@@ -3,10 +3,17 @@
 #include <stdlib.h>
 #include <string.h>
 
+unsigned bit_get(uint16_t x, unsigned n){
+	return x>>16-n & 1;
+}
+
+unsigned nor(unsigned a , unsigned b){
+	return ~(a & b) & (a | b);
+}
 void lfsr_calculate(uint16_t *reg) {
-
-  /* YOUR CODE HERE */
-
+	unsigned output = nor(nor(bit_get(*reg, 11), bit_get(*reg, 13)),
+						  nor(bit_get(*reg, 14), bit_get(*reg, 16)));
+	*reg = output<<15 | *reg>>1;
 }
 
 int main() {
